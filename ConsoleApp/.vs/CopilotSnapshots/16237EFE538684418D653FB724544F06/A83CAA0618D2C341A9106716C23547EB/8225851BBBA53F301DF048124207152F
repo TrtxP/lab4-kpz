@@ -1,0 +1,8 @@
+﻿namespace ClassLibraryBehavioralPatterns.Memento
+{
+    public class TextDocument
+    {
+        public string? _text { get; set; }
+        public DateTime _editDate { get; set; }
+    }
+}
