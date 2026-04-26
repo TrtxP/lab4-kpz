@@ -92,6 +92,57 @@ class Program
 
         Console.WriteLine(new string('-', 50));
 
+        // Демонстрування роботи шаблону стратегія
+
+        Console.WriteLine("Демонстрація роботи шаблону стратегія");
+
+        Console.WriteLine(new string('-', 50));
+
+        var image = new LightImageNode();
+
+        while (true)
+        {
+            Console.WriteLine("Виберіть спосіб задання джерелу зображення:\n1. URL\n2. Шлях до файлу\n3. Вихід");
+
+            string? input = Console.ReadLine();
+
+            if (input == "3")
+            {
+                break;
+            }
+
+            switch (input)
+            {
+                case "1":
+                    Console.Write("Введіть URL зображення: ");
+                    string? url = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(url))
+                    {
+                        image.SetSrc(url);
+                        image.Load();
+                        Console.WriteLine("Network strategy used");
+                        Console.WriteLine($"Зображення завантажено з URL: \n{image.OuterHTML()}");
+                    }
+                    break;
+                case "2":
+                    Console.Write("Введіть шлях до файлу зображення: ");
+                    string? filePath = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(filePath))
+                    {
+                        image.SetSrc(filePath);
+                        image.Load();
+                        Console.WriteLine("File strategy used");
+                        Console.WriteLine($"Зображення завантажено з файлового шляху: \n{image.OuterHTML()}");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Невірний вибір. Спробуйте ще раз.");
+                    break;
+            }
+        }
+
+        Console.WriteLine(new string('-', 50));
+
         // Демонстрування роботи шаблону мементо
 
         Console.WriteLine("Демонстрація роботи шаблону мементо");
@@ -114,3 +165,4 @@ class Program
         Console.WriteLine(new string('-', 50));
     }
 }
+ 
