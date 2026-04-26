@@ -1,0 +1,1 @@
+Task 4 with implementation of Behavioral Pattern: Strategy
