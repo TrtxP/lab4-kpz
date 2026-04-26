@@ -2,6 +2,6 @@
 {
     public interface IEventListener
     {
-        void Update();
+        void Update(string eventName, object sender);
     }
 }

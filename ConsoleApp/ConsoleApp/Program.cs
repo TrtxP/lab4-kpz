@@ -1,5 +1,8 @@
 ﻿using ClassLibraryBehavioralPatterns.ChainOfResponsibility;
 using ClassLibraryBehavioralPatterns.Memento;
+using ClassLibraryBehavioralPatterns.Observer;
+using ClassLibraryStructurePatterns.Composite.Classes;
+using ClassLibraryStructurePatterns.Composite.Enums;
 using DesignPatterns.Mediator;
 using System.Text;
 class Program
@@ -70,18 +73,41 @@ class Program
 
         Console.WriteLine(new string('-', 50));
 
+        // Демонстрування роботи шаблону спостерігач
+
+        Console.WriteLine("Демонстрація роботи шаблону спостерігач");
+
+        Console.WriteLine(new string('-', 50));
+
+        var sender = new ConsoleEventListener();
+
+        var span = new LightElementNode("span", DisplayType.Block, ClosingType.Normal);
+
+        span.AddEventListener("click", sender);
+        span.Click();
+
+        var div = new LightElementNode("div", DisplayType.Block, ClosingType.Normal);
+        div.AddEventListener("mouseover", sender);
+        div.MouseOver();
+
+        Console.WriteLine(new string('-', 50));
+
         // Демонстрування роботи шаблону мементо
 
         Console.WriteLine("Демонстрація роботи шаблону мементо");
+
+        Console.WriteLine(new string('-', 50));
 
         var editor = new TextEditor();
         var history = new EditorHistory(editor);
 
         editor.Write("Hello, World!");
+        history.Save();
         Console.WriteLine($"Current content: {editor.GetContent()}");
         history.Save();
         editor.Write(" This is a new line.");
         Console.WriteLine($"Current content: {editor.GetContent()}");
+        history.Undo();
         history.Undo();
         Console.WriteLine($"After undo: {editor.GetContent()}");
 
