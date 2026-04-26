@@ -1,12 +1,13 @@
-﻿namespace ClassLibraryBehavioralPatterns.Memento
+﻿using System.Text;
+namespace ClassLibraryBehavioralPatterns.Memento
 {
     public class TextEditor
     {
-        private string? _state;
+        private StringBuilder _state = new StringBuilder();
 
         public IMemento CreateShapshot()
         {
-            TextDocument document = new TextDocument(_state, DateTime.Now);
+            TextDocument document = new TextDocument(_state.ToString(), DateTime.Now);
             return document;
         }
 
@@ -14,12 +15,11 @@
         {
             if (memento is TextDocument document)
             {
-                this._state = document.GetText();
-                Console.WriteLine($"Відновлено текст: {this._state}");
+                this._state = new StringBuilder(document.GetText());
             }
         }
 
-        public void Write(string text) => _state = text;
-        public string? GetContent() => _state;
+        public void Write(string text) => _state.Append(text);
+        public string? GetContent() => _state.ToString();
     }
 }

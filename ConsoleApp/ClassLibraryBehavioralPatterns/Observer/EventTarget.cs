@@ -2,7 +2,7 @@
 {
     public class EventTarget
     {
-        public Dictionary<string, List<IEventListener>> _eventListeners = new Dictionary<string, List<IEventListener>>();
+        private Dictionary<string, List<IEventListener>> _eventListeners = new Dictionary<string, List<IEventListener>>();
 
         public void AddEventListener(string eventName, IEventListener listener)
         {
@@ -19,7 +19,7 @@
             {
                 foreach (var listener in listeners)
                 {
-                    listener.Update();
+                    listener.Update(eventName, this);
                 }
             }
         }
