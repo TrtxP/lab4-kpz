@@ -120,7 +120,6 @@ class Program
                     {
                         image.SetSrc(url);
                         image.Load();
-                        Console.WriteLine("Network strategy used");
                         Console.WriteLine($"Зображення завантажено з URL: \n{image.OuterHTML()}");
                     }
                     break;
@@ -131,7 +130,6 @@ class Program
                     {
                         image.SetSrc(filePath);
                         image.Load();
-                        Console.WriteLine("File strategy used");
                         Console.WriteLine($"Зображення завантажено з файлового шляху: \n{image.OuterHTML()}");
                     }
                     break;
